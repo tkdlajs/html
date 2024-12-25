@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카페 16온스</title>
+    <script src="./jquery/jquery.js"></script>
+    <script src="final_project.js"></script>
+    <link rel="stylesheet" href="final_project.css">
+</head>
+<body>
+    <h1>카페 16온스</h1>
+    <button class="admin_button">
+        관리자 버튼입니다.
+    </button>
+    <hr>
+    <div class="container">
+        <div class="box" id="boxMenu">Menu Area
+            <div draggable="true" menuname="아메리카노" class="menu">
+                <img src="images/burger.webp" alt="burger">
+                burger
+                <span class="count_span">
+                    <button class="plus_button">
+                        +
+                    </button>
+                    <span class="counter">
+                        1
+                    </span>
+                    <button class="minus_button">
+                        -
+                    </button>
+                </span>
+                <span class="product_price">
+                    1500
+                </span>
+                원
+            </div>
+            <div draggable="true" menuname="돌체라떼" class="menu">
+                <img src="images/coke.webp" alt="coke">
+                    coke
+                <span class="count_span">
+                    <button class="plus_button">
+                        +
+                    </button>
+                    <span class="counter">
+                        1
+                    </span>
+                    <button class="minus_button">
+                        -
+                    </button>
+                </span>
+                <span class="product_price">
+                    3000
+                </span>
+                원
+            </div>
+            <div draggable="true" menuname="바닐라 라떼" class="menu">
+                <img src="images/fries.png" alt="fries">
+                fries
+                <span class="count_span">
+                    <button class="plus_button">
+                        +
+                    </button>
+                    <span class="counter">
+                        1
+                    </span>
+                    <button class="minus_button">
+                        -
+                    </button>
+                </span>
+                <span class="product_price">
+                    3500
+                </span>
+                원
+            </div>
+        </div>
+        <div class="box" id="boxCart">Cart Area
+        </div>
+    </div>
+    <div class="floating_bar">
+        <span>가격:</span>
+        <span class ="price_receipt">0</span>
+        <span>원</span>
+
+        <button class = "payment_button">
+            결제하기
+        </button>
+    </div>
+
+</body>
+</html>

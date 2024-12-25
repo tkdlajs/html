@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function() {
+            //-----------------------------------------------------------
+            // 객체의 2개 이상의 이벤트 속성 처리하기 연습
+            //-----------------------------------------------------------
+            // h1 객체 위로 마우스 포인터 올라가면 blue로, 벗어나면 black으로 복원하기
+             // 1. h1객체 가져오기
+              let h1 = document.querySelector("h1");
+
+              // 2. onmouseover, onmouseout 이벤트 핸들러 각각 처리하기
+              h1.onmouseover = function() {
+                this.style.color = "red";
+              }
+              h1.onmouseout = function() {
+                this.style.color = "green";
+        }
+    }
+    </script>
+</head>
+<body>
+    <h1>고전 이벤트 모델 연습</h1>
+    <hr>
+    <ol>
+        <li>프론트엔드프로그래밍II</li>
+        <li>데이터베이스</li>
+        <li>자바프로그래밍</li>
+    </ol>
+</body>
+</html>

@@ -1,0 +1,38 @@
+.container {
+    background-color: beige;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.box {
+    background-color: bisque;
+    border-radius: 5px;
+    padding: 20px;
+    width: 30vw;
+    margin: 10px;
+}
+.overBox{
+    background-color:powderblue;
+}
+.menu {
+    border: 1px solid blue;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: cadetblue;
+    margin: 10px;
+} 
+.overMenu {
+    background-color: rgb(20, 148, 107);
+}
+/* id가 boxCart인 태그의 자식 노드로 들어간 .menu 인 경우 */
+#boxCart .menu{
+    font-weight: bold;
+    height: 60px;
+    background-color: rgb(202, 67, 137);
+    border-color: yellow;
+
+}
+.draggingMenu {
+    border-color: red;
+}

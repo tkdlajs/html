@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 문서 로딩이 완료된 직후(onload 이벤트)에 실행할 내용을 함수로 등록한다.
+        window.onload = function() {
+            // 학생명에 대한 처리
+           let st = document.getElementById("studet");
+           st.style.fontWeight = "bold";
+           st.style.color = "green";
+
+           //모든 h2 태그의 색깔을 파란색으로 설정하기
+           // 1. h2태그를 모두 선택해서 가져온다.
+            let listh2 = document.getElementsByTagName("h2")
+           // 2. 가져온 태그 하나씩 차례대로 스타일을 변경한다.
+           for(let item of listh2) {
+            item.style.color = "blue";
+           }
+        // 1학기 수강과목명 색깔 모두 "navy"로 설정하기
+           let list2 = document.getElementsByClassName("semester1")
+           
+           for(let item of list2) {
+            item.style.color = "navy";
+           }
+
+           let list3 = document.getElementsByClassName(" subject")
+           for(let item of list3) {
+            item.style.fontSize = "9pt";
+           }
+        }
+        // 1, 2학기 수강과목명을 python 1과목으로 통일하기
+        function changeSubject() {
+            // ul 태크 모두 가져온다.
+            let listUL = document.getElementsByTagName("ul");
+            // 각 ul 태그의 속성 innerHTML 값을 변경한다.
+            for(let item of listUL) {
+                item.innerHTML = "<li class='subject'>python</li>"
+            }
+        }
+
+           //문서 로딩이 완료된 직후(onload 이벤트)에 살행할 내용을 함수로 등록한다.
+           window.onload = function(){
+            afterLoading();
+            document.getElementById("student").innerHTML = "이순신"
+           }
+        
+    </script>
+</head>
+<body>
+    <h1>문서객체모델(DOM) 프로그래밍 연습</h1>
+    <hr>
+    <p>학생명: <span id = "studet">홍길동</span></p>
+    <h2>1학기 수강과목</h2>
+    <ul>
+        <li class = "semester1 subject">C프로그래밍</li>
+        <li class = "semester1 subject">컴퓨터구조</li>
+        <li class = "semester1 subject">사물인터넷프로그래밍</li>
+    </ul>
+
+    <h2>2학기 수강과목</h2>
+    <ul>
+        <li class = "semester2 subject">프론트엔드프로그래밍II</li>
+        <li class = "semester2 subject">자바프로그래밍</li>
+        <li class = "semester2 subject">데이터베이스</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<project."html">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="final_project.css">
+</head>
+<body>
+
+    <header>
+        카페 16온스
+        
+        <button id="admin_button">
+            관리자 메뉴
+        </button>
+    </header>
+    <div class = "whole_container">
+        <div class = "menu">
+            <div id="burger" draggable="true">
+                <img src="../images/burger.webp" alt="아메리카노">
+                burger
+            </div>
+            <div id = "fries" draggable="true">
+                <img src="../images/fries.png" alt="돌체 라떼">
+                fries
+            </div>
+            <div id = "coke" draggable="true">
+                <img src="../images/coke.webp" alt="바닐라 라떼">
+                coke
+            </div>
+
+            <div>
+                1500원
+            </div>
+            <div>
+                3000원
+            </div>
+            <div>
+                3500원
+            </div>
+        </div>
+
+        <div id="cart">
+            장바구니 목록:
+            <div id = "hamburger_in_cart" class = "cart_item"style="display: none;" draggable="true">
+                아메리카노 1500원
+                <div>
+                    수량
+                    <button class = 'hamburger_minus_button'>-</button>
+                        <span id = "hamburger_count">
+                            0 
+                        </span>
+                    <button class = 'hamburger_plus_button'>+</button>
+                </div>
+            </div>
+
+            <div id = "fries_in_cart" class = "cart_item"style="display: none;" draggable="true">
+                돌체 라떼 3000원
+                <div>
+                    수량
+                    <button class = 'fries_minus_button'>-</button>
+                        <span id = "fries_count">0</span>
+                    <button class = 'fries_plus_button'>+</button>
+                </div>
+
+            </div>
+
+            <div id = "coke_in_cart" class = "cart_item" style="display: none;" draggable="true">
+                바닐라 라떼 3500원
+                <div>
+                    수량
+                        <button class = 'coke_minus_button'>-</button>
+                            <span id = "coke_count">0</span>
+                        <button class = 'coke_plus_button'>+</button>
+                    </div>
+                </div>
+            </div>
+            <div class = "dump">
+                빼기
+            </div>
+
+        </div>
+    </div>
+    <div class="floating_bar">
+        <span>가격:</span>
+        <span class ="price">0</span>
+        <span>원</span>
+
+        <button class = "payment_button">
+            결제하기
+        </button>
+    </div>
+
+    
+
+    <div class="admin_bar" style="display: none;">
+
+        날짜:
+        <span class="calendar">
+            오늘
+        </span>
+        <span class = 'admin_header'>
+            총 매출
+            <button class="admin_bar_close_button">
+                닫기
+            </button>
+        </span>
+
+        <div>
+            <span class = "total_revenue">
+                0
+            </span>
+            <span>
+                원
+            </span>
+        </div>
+
+        판매 내역
+        <li>
+            <ol>
+
+            </ol>
+        </li>
+
+        <button class="init_revenue">
+            매출 초기화 하기
+        </button>
+    </div>
+</body>
+
+
+
+<script>
+const burger = document.querySelector("#burger");
+const fries = document.querySelector("#fries");
+const coke = document.querySelector("#coke");
+
+
+const cart = document.querySelector("#cart");
+
+const hamburger_in_cart = document.querySelector("#hamburger_in_cart");
+const fries_in_cart = document.querySelector("#fries_in_cart");
+const coke_in_cart = document.querySelector("#coke_in_cart");
+
+const hamburger_count = document.querySelector("#hamburger_count");
+const fries_count = document.querySelector("#fries_count");
+const coke_count = document.querySelector("#coke_count");
+
+let in_cart = [];
+
+const hamburger_minus_button = document.querySelector(".hamburger_minus_button");
+const hamburger_plus_button = document.querySelector(".hamburger_plus_button");
+
+const fries_minus_button = document.querySelector(".fries_minus_button");
+const fries_plus_button = document.querySelector(".fries_plus_button");
+
+const coke_minus_button = document.querySelector(".coke_minus_button");
+const coke_plus_button = document.querySelector(".coke_plus_button");
+
+let price = document.querySelector(".price");
+
+const dump = document.querySelector(".dump");
+
+const today = new Date();
+
+const year = today.getFullYear();
+const month = today.getMonth()+1;
+const day = today.getDate();
+
+const calendar = document.querySelector(".calendar");
+
+calendar.textContent = `${year}년 ${month}월 ${day}일`;
+
+hamburger_minus_button.addEventListener("click", function () {
+    hamburger_count.textContent = parseInt(hamburger_count.textContent) - 1;
+    if(parseInt(hamburger_count.textContent) <= 0) {
+        hamburger_in_cart.style.display = 'none';
+    }
+        price.textContent = parseInt(price.textContent) - 7000;
+
+})
+hamburger_plus_button.addEventListener("click", function () {
+    hamburger_count.textContent = parseInt(hamburger_count.textContent) + 1;
+    price.textContent = parseInt(price.textContent) + 7000;
+})
+
+fries_minus_button.addEventListener("click", function () {
+    fries_count.textContent = parseInt(fries_count.textContent) - 1;
+
+    if(parseInt(fries_count.textContent) <= 0) {
+        fries_in_cart.style.display = 'none';
+    }
+
+        price.textContent = parseInt(price.textContent) - 2000;
+
+})
+fries_plus_button.addEventListener("click", function () {
+    fries_count.textContent = parseInt(fries_count.textContent) + 1;
+    price.textContent = parseInt(price.textContent) + 2000;
+})
+
+coke_minus_button.addEventListener("click", function () {
+    coke_count.textContent = parseInt(coke_count.textContent) - 1;
+    if(parseInt(coke_count.textContent) <= 0) {
+        coke_in_cart.style.display = 'none';
+    }
+
+        price.textContent = parseInt(price.textContent) - 1500;
+
+    
+})
+coke_plus_button.addEventListener("click", function () {
+    coke_count.textContent = parseInt(coke_count.textContent) + 1;
+    price.textContent = parseInt(price.textContent) + 1500;
+})
+
+
+burger.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text", burger.textContent);
+});
+fries.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text", fries.textContent);
+});
+coke.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text", coke.textContent);
+});
+
+cart.addEventListener("dragover", (e) => {
+    e.preventDefault();
+});
+
+
+
+cart.addEventListener("drop", (e) => {
+    e.preventDefault();
+    const data = e.dataTransfer.getData("text").trim();
+
+    if (data) {
+        if (in_cart.includes(data)) {
+            console.log("data가 더 추가 안 됨");
+            // 수량 증가
+            if (data === 'burger') {
+                hamburger_count.textContent = parseInt(hamburger_count.textContent) + 1;
+                hamburger_in_cart.style.display = 'block'
+                price.textContent = parseInt(price.textContent) + 7000;
+            } else if (data === 'fries') {
+                fries_count.textContent = parseInt(fries_count.textContent) + 1;
+                fries_in_cart.style.display = 'block';
+                price.textContent = parseInt(price.textContent) + 2000;
+            } else if (data === 'coke') {
+                coke_count.textContent = parseInt(coke_count.textContent) + 1;
+                coke_in_cart.style.display = 'block';
+                price.textContent = parseInt(price.textContent) + 1500;
+            }
+        } else {
+            in_cart.push(data);
+            console.log(in_cart);
+
+            // 새로운 항목을 장바구니에 추가
+            const newItem = document.createElement('div');
+            cart.appendChild(newItem);
+            
+            // 수량 초기화
+            if (data === 'burger') {
+                hamburger_count.textContent = 1;
+                hamburger_in_cart.style.display = 'block';
+                price.textContent = parseInt(price.textContent) + 7000;
+            } else if (data === 'fries') {
+                fries_count.textContent = 1;
+                fries_in_cart.style.display = 'block';
+                price.textContent = parseInt(price.textContent) + 2000;
+
+            } else if (data === 'coke') {
+                coke_count.textContent = 1;
+                coke_in_cart.style.display = 'block';
+                price.textContent = parseInt(price.textContent) + 1500;
+
+            }
+        }
+    }
+});
+
+hamburger_in_cart.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text", "burger");
+    console.log("Set data:", "burger");
+});
+
+fries_in_cart.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text", "fries");
+    console.log("Set data:", "fries"); 
+});
+
+coke_in_cart.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text", "coke");
+    console.log("Set data:", "coke"); 
+});
+
+
+dump.addEventListener("dragover", (e)=>{
+    e.preventDefault();
+})
+dump.addEventListener("drop", (e) => {
+    e.preventDefault();
+    const data = e.dataTransfer.getData("text");
+    console.log("Dropped data:", data); 
+
+    if (data) {
+        if(confirm(`${data}를 정말로 장바구니에서 제거하시겠습니까?`)){
+            if (data == 'burger'){
+                price.textContent = parseInt(price.textContent) -  parseInt(hamburger_count.textContent) * 7000;
+                hamburger_count.textContent = 0;
+                hamburger_in_cart.style.display = 'none';
+            }else if (data =='fries'){
+                price.textContent = (parseInt(price.textContent) -  parseInt(fries_count.textContent) * 2000);
+                fries_count.textContent = 0;
+                fries_in_cart.style.display = 'none';
+            }
+            else {
+                price.textContent = (parseInt(price.textContent) -  parseInt(coke_count.textContent) * 1500);
+                coke_count.textContent = 0;
+                coke_in_cart.style.display = 'none';
+
+            }
+        }
+    }
+     else {
+        console.log('data 안들어옴');
+    }
+}
+);
+
+
+
+//결제하기
+
+
+const payment_button = document.querySelector(".payment_button");
+const admin_button = document.querySelector("#admin_button");
+const admin_bar = document.querySelector(".admin_bar");
+
+const total_revenue = document.querySelector(".total_revenue");
+const admin_bar_close_button = document.querySelector(".admin_bar_close_button");
+const init_revenue = document.querySelector(".init_revenue");
+
+
+
+
+
+
+payment_button.addEventListener("click", function () {
+
+    total_revenue.textContent = parseInt(total_revenue.textContent) + parseInt(price.textContent);
+
+    console.log("sell");
+    const saleItem = document.createElement('li');
+    saleItem.textContent = `판매 내역: 아메리카노 ${hamburger_count.textContent}개. ${parseInt(hamburger_count.textContent)*1500}
+                        돌체 라떼 ${fries_count.textContent}개. ${parseInt(fries_count.textContent)*3000}원
+                        바닐라 라떼 ${coke_count.textContent}개. ${parseInt(coke_count.textContent)*3500}원
+                        총 가격:${price.textContent}원
+                        시간: ${today}`;
+    admin_bar.querySelector('ol').appendChild(saleItem);
+
+    alert(` 영수증: 아메리카노 ${hamburger_count.textContent}개. ${parseInt(hamburger_count.textContent)*1500}
+                    돌체 라떼 ${fries_count.textContent}개. ${parseInt(fries_count.textContent)*3000}원
+                    바닐라 라떼 ${coke_count.textContent}개. ${parseInt(coke_count.textContent)*3500}원
+                    총액:${price.textContent}`);
+
+    price.textContent = 0;
+    hamburger_count.textContent = 0;
+    fries_count.textContent = 0;
+    coke_count.textContent = 0;
+    hamburger_in_cart.style.display = 'none';
+    fries_in_cart.style.display = 'none';
+    coke_in_cart.style.display = 'none';
+
+    in_cart = [];
+});
+
+admin_button.addEventListener("click", function () {
+    console.log("admin");
+    admin_bar.style.display = 'block';
+});
+
+admin_bar_close_button.addEventListener("click",function () {
+    admin_bar.style.display = 'none';
+})
+
+init_revenue.addEventListener("click", function () {
+    admin_bar.children[2].remove()
+    total_revenue.textContent = 0
+})
+
+
+
+</script>
+</html>
